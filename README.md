@@ -7,4 +7,8 @@
 6. Login sebagai user dengan email : user@test.com, password: 123123
 
 Kop mangga ojan wilujeng lieur.
+<<<<<<< HEAD
 Tapi sing hasil, meh gaduh acis haha
+=======
+Tapi sing hasil, meh gaduh acis haha
+>>>>>>> 2676811121ed6b55f5e7c01965fa9fda8d9d46f3
