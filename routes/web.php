@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,15 +14,38 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
+// auth
 Route::get('logout', 'Auth\LoginController@logout')->name('logout.get');
-
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// front
+Route::namespace('Front')->group(function () {
+    Route::name('front.')->group(function () {
+        Route::get('/home', 'FrontController@index')->name('index');
+        Route::get('/', 'FrontController@index')->name('index');
+
+        // cart
+        Route::prefix('keranjang')->group(function () {
+            Route::name('cart.')->group(function () {
+                Route::get('', 'CartController@index')->name('index');
+                Route::get('tambah-keranjang/{id}/{slug}', 'CartController@store')->name('store');
+                Route::delete('hapus-keranjang/{id}/{slug}', 'CartController@destroy')->name('destroy');
+                Route::get('pesan', 'CartController@order')->name('order');
+            });
+        });
+
+        // bus
+        Route::prefix('bus')->group(function () {
+            Route::name('bus.')->group(function () {
+                Route::get('', 'BusController@index')->name('index');
+                Route::get('detail/{id}/{slug}', 'BusController@show')->name('show');
+            });
+        });
+    });
+});
+
+
+// admin
 
 Route::namespace('Admin')->group(function () {
     Route::name('admin.')->group(function () {

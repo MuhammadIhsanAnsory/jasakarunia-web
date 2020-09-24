@@ -1,0 +1,44 @@
+.img-about{
+    border-radius: 10px;
+    position: relative;
+    max-width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.profile-teams{
+    min-height: 400px;
+}
+
+.parent-img-profile{
+    position: relative;
+    background: #f3941e;
+    height: 150px;
+    transform: translateX(-50%);
+    left: 50%;
+    width: 60%;
+}
+
+
+.parent-img-profile .card-img-top{
+    width: 120px !important;
+    box-shadow: 0 0 5px #00000042;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%);
+    height: 120px;
+    border-radius: 50%;
+}
+
+.profile-teams .social-media li{
+    list-style: none;
+    width: 50px;
+    height: 50px;
+    margin: 0 2.5px;
+    line-height: 50px;
+    background: #f3941e;
+    box-shadow: 0 0 5px rgba(0, 0, 0, .35);
+    border-radius: 50%;
+    text-align: center;
+}
