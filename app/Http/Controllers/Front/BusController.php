@@ -11,7 +11,7 @@ class BusController extends Controller
 
     public function index()
     {
-        $buses = Bus::latest()->paginate(25);
+        $buses = Bus::latest()->paginate(12);
 
         return view('front.bus.index', compact('buses'));
     }

@@ -6,7 +6,7 @@ Selamat Datang di
 
 @section('content')
 <div>
-  <section class="header-mereun">
+  {{-- <section class="header-mereun">
     <div class="hero-wrap js-fullheight">
       <img src="assets/front/images/bali.jpg" alt="" class="animate-background">
       <div class="overlay"></div>
@@ -22,9 +22,9 @@ Selamat Datang di
         </div>
       </div>
     </div>
-  </section>
+  </section> --}}
 
-  <section class="ftco-section services-section bg-light">
+  {{-- <section class="ftco-section services-section bg-light">
     <div class="container">
       <div class="row d-flex">
         <div class="col-md-3 d-flex align-self-stretch ftco-animate">
@@ -73,22 +73,105 @@ Selamat Datang di
         </div>
       </div>
     </div>
-  </section>
+  </section> --}}
 
+  <div class="bg-dark" style="height: 100px">
+  </div>
 
-
-  <section class=" ftco-section bg-light">
+  <section class="jumbotroninfo">
     <div class="container">
-      <div class="row justify-content-start mb-5 pb-3">
+      <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+          <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+          <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+          <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+          <li data-target="#carouselExampleCaptions" data-slide-to="3"></li>
+        </ol>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            @php
+            $image1 = json_decode($buses[0]->images);
+            @endphp
+            <img src="{{ asset('uploads/buses/'. $buses[0]->id. '/' . $image1[0]) }}"
+              class="d-block w-100 image-carousel" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+              <a href="{{ route('front.bus.show', [$buses[0]->id, $buses[0]->slug]) }}">
+                <h5 class="text-shadow text-white">{{ $buses[0]->name }}</h5>
+                <p class="text-shadow text-white">Lihat Detail</p>
+              </a>
+            </div>
+          </div>
+          @forelse ($buses as $i=>$bus)
+          @php
+          $images = json_decode($bus->images);
+          @endphp
+          @if ($i > 0)
+          <div class="carousel-item">
+            <img src="{{ asset('uploads/buses/'. $bus->id. '/' . $images[0]) }}" class="d-block w-100 image-carousel"
+              alt="...">
+            <div class="carousel-caption d-none d-md-block">
+              <a href="{{ route('front.bus.show', [$bus->id, $bus->slug]) }}">
+                <h5 class="text-shadow text-white">{{ $bus->name }}</h5>
+                <p class="text-shadow text-white">Lihat Detail</p>
+              </a>
+            </div>
+          </div>
+          @endif
+          @if ($i == 3)
+          @break
+          @endif
+          @empty
+          @endforelse
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+      <h4 class="text-center my-5">Temukan Bus dengan Pelayanan Terbaik di <b>Jasa Karunia</b></h4>
+
+      <div class="row">
+        <div class="col-6">
+          <label for="keyword">Nama Layanan</label>
+          <input type="text" class="form-control" placeholder="cari e.g. Paket Bus" name="keyword">
+        </div>
+        <div class="col-4">
+          <label for="service">Jenis Layanan</label>
+          <select name="service" id="service" class="form-control">
+            <option value="bus">Bus</option>
+            <option value="wisata">Paket Wisata</option>
+            <option value="dekorasi">Dekorasi</option>
+          </select>
+        </div>
+        <div class="col-2">
+          <div style="height: 37px"></div>
+          <button type="submit" class="btn btn-orange"><i class="fas fa-search"></i> Cari</button>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="container">
+      <div class="row justify-content-start mt-5 pb-3">
         <div class="col-md-7 heading-section ftco-animate">
-          <span class="subheading">Special Jiwa</span>
-          <h2 class="mb-4"> <strong>Sewa</strong> Bus Jiwa</h2>
+          <span class="subheading">Special
+            Jiwa</span>
+          <h2 class="mb-4">
+            <strong>Sewa</strong>
+            Bus Jiwa</h2>
         </div>
       </div>
     </div>
+
     <div class="container-fluid">
       <div class="row">
-        @forelse ($buses as $bus)
+        @forelse ($buses as $i=>$bus)
+        @if ($i > 3)
         <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 ftco-animate">
           <div class="destination rental-destiny">
             @php
@@ -116,7 +199,6 @@ Selamat Datang di
                   </p>
                 </div>
               </div>
-
               <p>{{ \Illuminate\Support\Str::limit($bus->description, 30, '...') }} </p>
               <div class="features-rental">
                 <ul>
@@ -144,12 +226,17 @@ Selamat Datang di
             </div>
           </div>
         </div>
+        @endif
+        @if ($i === 7)
+        @break
+        @endif
         @empty
 
         @endforelse
 
       </div>
     </div>
+
   </section>
 
   <section class="ftco-section ftco-destination">

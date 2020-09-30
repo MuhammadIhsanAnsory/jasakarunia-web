@@ -12,7 +12,7 @@ class FrontController extends Controller
 {
     public function index()
     {
-        $buses = Bus::latest()->take(4)->get();
+        $buses = Bus::latest()->take(10)->get();
 
         return view('front.index', compact('buses'));
     }

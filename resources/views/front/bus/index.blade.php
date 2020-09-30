@@ -72,6 +72,7 @@ Bus
       @endforelse
 
     </div>
+    {{ $buses->links() }}
   </div>
 </div>
 @endsection

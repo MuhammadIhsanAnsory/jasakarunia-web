@@ -62,7 +62,7 @@
           <li class="nav-item">
 
             <a href="{{ route('front.cart.index') }}" class="nav-link link-cart"><i
-                class="fas fa-shopping-cart"></i>@if(cookie('jasakarunia_cart'))<sup><span
+                class="fas fa-shopping-cart"></i>@if(Cookie::get('jasakarunia_cart') !== null)<sup><span
                   class="badge badge-success"><i class="fas fa-check"></i></span></sup> @endif</a>
 
           </li>
